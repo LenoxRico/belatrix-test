@@ -1,0 +1,80 @@
+$primary_font: 'Cormorant', serif;
+$secondary_font: 'Montserrat', sans-serif;
+$primary_color: #72396a;
+$secondary_color: #666666;
+$txt_color: #222;
+
+@mixin flex__box($direction:row,$justify:center,$align:center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin font($typo:$secondary_font,$size:16,$spacing:0,$weight:false) {
+	font-family: $typo;
+	font-size: $size * 1px;
+	@if ($weight == 'light'){
+		font-weight: 300;
+	}
+	@if ($weight == 'regular'){
+		font-weight: 400;
+	}
+	@if ($weight == 'medium'){
+		font-weight: 500;
+	}
+	@if ($weight == 'semi-bold'){
+		font-weight: 600;
+	}
+	@if ($weight == 'bold'){
+		font-weight: 700;
+	}
+}
+h1{
+    @include font($typo:$primary_font,$size:60,$spacing:240,$weight:'light');
+    text-align: center;
+}
+.flex__container{
+    @include flex__box();
+    width: 80%;
+    margin: 0 auto 20px;
+    span{
+        width: 40%;
+    }
+    select{
+        display: block;
+        width: 60%;
+    }
+}
+table{
+    width: 80%;	
+    margin: 0 auto 10px;		
+    tr{
+        th{
+            @include font($typo:$secondary_font,$size:15,$spacing:240,$weight:'light');
+            color: $secondary_color;
+            padding: 10px;	
+            text-align: center;
+            text-transform: uppercase;
+            &:first-of-type{
+                text-align: left;
+            }
+        }
+        td{
+            @include font($typo:$secondary_font,$size:14,$spacing:0,$weight:'medium');
+            color: $txt_color;	
+            padding: 10px;
+            text-align: center;
+            &:first-of-type{
+                text-align: left;
+            }
+        }
+        &:nth-child(even){
+            background-color: #efeeed;
+        }
+    }
+}
+@media (max-width: 768px){
+	.data__table{
+		overflow: auto;
+	}
+}
